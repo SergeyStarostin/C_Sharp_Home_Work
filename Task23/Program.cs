@@ -36,4 +36,3 @@ int Prompt (string message) // метод считывания чисел с к�
     double y = k1 * x + b1;
     return (x, y);
 }
-
