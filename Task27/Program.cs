@@ -26,12 +26,12 @@ void FillArray(int[,] array) // Метод заполнения двумерно
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = Convert.ToInt32(new Random().Next(-100, 100));
+            array[i, j] = Convert.ToInt32(new Random().Next(1, 100));
         }
     }
 }
 
-void ArrangesElementsArrayRows (int [,] array)//метод, для упорядочивания строк массива на убыванию
+void ArrangesElementsArrayRows (int [,] array)// Метод, для упорядочивания строк массива на убыванию
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -39,9 +39,9 @@ void ArrangesElementsArrayRows (int [,] array)//метод, для упоряд�
         {
             for (int k = 0; k < array.GetLength(1) - 1; k++)
             {
-                if (array[i, k] > array[i, k + 1]) // поиск максимального значения массива
+                if (array[i, k] > array[i, k + 1]) // Поиск максимального значения массива
                 {
-                    int temporary = array[i, k + 1]; //временная переменная
+                    int temporary = array[i, k + 1]; // Временная переменная
                     array[i, k + 1] = array[i, k];
                     array[i, k] = temporary;
                 }
