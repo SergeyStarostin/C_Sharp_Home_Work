@@ -20,6 +20,12 @@ int Prompt (string message) // Метод считывания чисел с к�
     return 0;
 }
 
+int[,] CreationMatrix(int rows, int cols) // Метод создания двумерного массива
+{
+    int[,] array = new int[rows, cols];
+    return array;
+}
+
 void FillArray(int[,] array) // Метод заполнения двумерного массива
 {
     for (int i = 0; i < array.GetLength(0); i++)
@@ -31,7 +37,7 @@ void FillArray(int[,] array) // Метод заполнения двумерно
     }
 }
 
-void PrintArray(int[,] array) // Метод вывода на экран
+void PrintArray(int[,] array) // Метод вывода двумерного массива на экран 
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -44,9 +50,17 @@ void PrintArray(int[,] array) // Метод вывода на экран
     Console.WriteLine();
 }
 
-void AverageCols(int[,] array) // Метод вычисления среднего арифметического каждого столбца
+void PrintAverageResult(double[] array) // Метод вывода результата на экран
+{  
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.WriteLine($"Среднее арифметическое элементов {i + 1} столбца = {array[i]}");
+    }
+}
+
+double [] AverageCols(int[,] array) // Метод вычисления среднего арифметического каждого столбца
 {
-    Console.WriteLine();
+    double[] averageArray = new double[array.GetLength(1)];
     for (int j = 0; j < array.GetLength(1); j++)
     {
         double result = 0;
@@ -54,13 +68,15 @@ void AverageCols(int[,] array) // Метод вычисления среднег
         {
             result += array[i, j];
         }
-        Console.WriteLine($"Среднее арифметическое элементов {j + 1} столбца = {result / array.GetLength(0)} ");
+        averageArray[j] = result / array.GetLength(0);
     }
+    return averageArray;
 }
 
-int rows = Prompt("Введите количество строк:  ");
+int rows = Prompt("Введите количество строк: ");
 int cols = Prompt("Введите количество столбцов: ");
-int[,] matrix = new int[rows, cols];
-FillArray(matrix);
-PrintArray(matrix);
-AverageCols(matrix);
+int [,] matrix = CreationMatrix(rows, cols);
+FillArray(matrix); // Заполнение массива
+PrintArray(matrix); // Вывод заполненного двумерного массива
+double [] averageArray = AverageCols(matrix);
+PrintAverageResult (averageArray); // Вывод результата на экран
