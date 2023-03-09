@@ -1,6 +1,16 @@
 ﻿// Задача 1: Задайте двумерный массив. Напишите программу, которая упорядочивает по убыванию 
 // элементы каждой строки двумерного массива.
 
+int rows = Prompt("Введите количество строк: ");
+int cols = Prompt("Введите количество столбцов: ");
+int [,] matrix = CreationMatrix(rows, cols);
+FillArray(matrix); // Заполнение массива
+PrintArray(matrix); // Вывод заполненного двумерного массива
+System.Console.WriteLine();
+System.Console.WriteLine("Отсортированный массив по убыванию:");
+ArrangesElementsArrayRows(matrix); // Сортировка массива по убыванию
+PrintArray(matrix); // Вывод на экран отсортированного массива
+
 int Prompt (string message) // Метод считывания чисел с консоли
 {
     Console.Write(message);
@@ -63,13 +73,3 @@ void PrintArray(int[,] array) // Метод вывода двумерного м
     }
     Console.WriteLine();
 }
-
-int rows = Prompt("Введите количество строк: ");
-int cols = Prompt("Введите количество столбцов: ");
-int [,] matrix = CreationMatrix(rows, cols);
-FillArray(matrix); // Заполнение массива
-PrintArray(matrix); // Вывод заполненного двумерного массива
-System.Console.WriteLine();
-System.Console.WriteLine("Отсортированный массив по убыванию:");
-ArrangesElementsArrayRows(matrix); // Сортировка массива по убыванию
-PrintArray(matrix); // Вывод на экран отсортированного массива
