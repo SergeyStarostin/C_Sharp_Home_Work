@@ -7,8 +7,8 @@
 // 2       13      14      7
 // 3       4       5       6
 
-int range = Prompt("Введите размер двумерного массива = ");
-int[,] matrix = CreateMatrix(range, range);
+int size = Prompt("Введите размер двумерного массива = ");
+int[,] matrix = CreateMatrix(size, size);
 
 PrintArray(FillSpiralMatrix(matrix));
 
