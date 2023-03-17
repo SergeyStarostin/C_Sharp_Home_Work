@@ -1,35 +1,29 @@
 ﻿//Задача 3 * : Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 
-// Введите количество строк: 3
-// Введите количество столбцов: 4
-
-// 20      6       7       1
-// 43      31      46      9
-// 39      6       34      40
-
-// 47      2       4       13
-// 26      8       7       33
-// 9       25      43      48
-
-// 940     12      28      13
-// 1118    248     322     297
-// 351     150     1462    1920
-
-int rows = Prompt("Введите количество строк: ");
-int cols = Prompt("Введите количество столбцов: ");
-
-int [,] firstArray = new int[rows, cols];
-int [,] secondArray = new int[rows, cols];
-int [,] resultArray = new int[rows, cols];
-
+int rows1 = Prompt("Введите количество строк перой матрицы: ");
+int cols1 = Prompt("Введите количество столбцов первой матрицы: ");
+int [,] firstArray = new int[rows1, cols1];
 FillArray(firstArray);
 PrintArray(firstArray);
 
+int rows2 = Prompt("Введите количество строк второй матрицы: ");
+int cols2 = Prompt("Введите количество столбцов второй матрицы: ");
+int [,] secondArray = new int[rows2, cols2];
 FillArray(secondArray);
 PrintArray(secondArray);
 
+int [,] resultArray = new int[rows2, cols2];
 int [,] matrixProd = MatrixProduct(resultArray);
-PrintArray(matrixProd);
+
+if (ValidateMatrixProduct(firstArray, secondArray))
+{
+    Console.WriteLine("Произведение матриц: ");
+    PrintArray(matrixProd);
+}
+else
+{
+    Console.WriteLine("Произведение матриц невозможно");
+}
 
 int Prompt (string message) // Метод считывания чисел с консоли
 {
@@ -50,7 +44,7 @@ void FillArray(int[,] array) // Метод заполнения двумерно
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = Convert.ToInt32(new Random().Next(1, 20));
+            array[i, j] = Convert.ToInt32(new Random().Next(1, 10));
         }
     }
 }
@@ -68,6 +62,12 @@ void PrintArray(int[,] array) // Метод вывода двумерного м
     Console.WriteLine();
 }
 
+bool ValidateMatrixProduct(int[,] firstMartrix, int[,] secomdMartrix) // Метод проверки на возможность умножение матриц
+{
+    if (firstArray.GetLength(1) == secondArray.GetLength(0)) return true;
+    else return false;
+}
+
 int [,] MatrixProduct(int[,] array) // Метод умножения двумерных массивов
 {
     for (int i = 0; i < firstArray.GetLength(0); i++)
@@ -77,7 +77,7 @@ int [,] MatrixProduct(int[,] array) // Метод умножения двуме�
             resultArray[i, j] = 0;
             for (int k = 0; k < firstArray.GetLength(1); k++)
             {
-                resultArray[i, j] = firstArray[i, j] * secondArray[i, j];
+                resultArray[i, j] += firstArray[i, k] * secondArray[k, j];
             }
         }
     }
